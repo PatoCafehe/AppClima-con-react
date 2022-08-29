@@ -22,13 +22,18 @@ const ClimaProvider = ({ children }) => {
 	const consultarClima = async (datos) => {
 		setCargando(true);
 		setSinResultado(false);
+
 		try {
 			const { ciudad, pais } = datos;
-			const appId = import.meta.env.VITE_API_KEY;
-			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},${pais}&limit=1&appid=${appId}`;
+			const idApp = import.meta.env.VITE_API_KEY;
+
+			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${ciudad},${pais}&limit=1&appid=${idApp}`;
+			console.log(url);
 			const { data } = await axios(url);
 			const { lat, lon } = data[0];
-			const urlClima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`;
+			const urlClima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idApp}`;
+			console.log(urlClima);
+
 			const { data: clima } = await axios(urlClima);
 			setResultado(clima);
 		} catch (error) {
