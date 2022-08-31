@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const ClimaContext = createContext();
 
+console.log(import.meta.env);
+
 const ClimaProvider = ({ children }) => {
 	const [busqueda, setBusqueda] = useState({
 		ciudad: '',
@@ -32,7 +34,6 @@ const ClimaProvider = ({ children }) => {
 			const { data } = await axios(url);
 			const { lat, lon } = data[0];
 			const urlClima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${idApp}`;
-			console.log(urlClima);
 
 			const { data: clima } = await axios(urlClima);
 			setResultado(clima);
