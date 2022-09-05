@@ -8,6 +8,7 @@ const ClimaProvider = ({ children }) => {
 		ciudad: '',
 		pais: '',
 	});
+
 	const [resultado, setResultado] = useState({});
 	const [cargando, setCargando] = useState(false);
 	const [sinResultado, setSinResultado] = useState();
